@@ -1,0 +1,32 @@
+name: bat_species
+description: "A new Flutter project."
+publish_to: 'none'
+version: 0.1.0
+
+environment:
+  sdk: ^3.5.3
+
+dependencies:
+  flutter_bloc:
+  equatable:
+  hive:
+  hive_flutter:
+  path_provider:
+  shared_preferences:
+  excel:
+  flutter:
+    sdk: flutter
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  hive_generator:
+  build_runner:
+  flutter_lints: ^4.0.0
+
+flutter:
+  uses-material-design: true
+
+  assets:
+    - assets/files/
+    - assets/icons/
