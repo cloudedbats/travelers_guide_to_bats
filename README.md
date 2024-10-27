@@ -1,2 +1,3 @@
-# travelers_guide_to_bats
+# Traveler's Guide to Bats
+
 A small app to learn developing in Flutter and Dart. Data content from IUCN Red List.
