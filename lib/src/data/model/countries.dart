@@ -36,5 +36,15 @@ void clearAll() {
 }
 
 void sortCountries() {
-  return countries.sort((a, b ) => a.countryName.compareTo(b.countryName));
+  countries.sort((a, b) => a.countryName.compareTo(b.countryName));
+}
+
+List<Country> filterCountriesByString(String filterString) {
+  List<Country> filteredList = countries
+      .where((a) =>
+          a.countryName.toLowerCase().contains(filterString.toLowerCase()) ||
+          a.countryCode.toLowerCase().contains(filterString.toLowerCase())
+          )
+      .toList();
+  return filteredList;
 }

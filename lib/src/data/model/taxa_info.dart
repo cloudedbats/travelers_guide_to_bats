@@ -73,7 +73,7 @@ void clearTaxonInfoList() {
 }
 
 void sortTaxaInfo() {
-  return taxaInfo.sort((a, b ) => a.scientificName.compareTo(b.scientificName));
+  return taxaInfo.sort((a, b) => a.scientificName.compareTo(b.scientificName));
 }
 
 // scientific_name 0

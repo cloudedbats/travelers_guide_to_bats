@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:bat_species/src/app/pages/countries_page.dart';
-import 'package:bat_species/src/app/pages/species_page.dart';
-import 'package:bat_species/src/app/pages/home_page/cubit/theme_cubit.dart'
+import 'package:travelers_guide_to_bats/src/app/pages/countries_page/countries_page.dart';
+import 'package:travelers_guide_to_bats/src/app/pages/species_page/species_page.dart';
+import 'package:travelers_guide_to_bats/src/app/pages/home_page/cubit/theme_cubit.dart'
     as theme_cubit;
 
 class HomePage extends StatefulWidget {
@@ -35,9 +35,11 @@ class _HomePageState extends State<HomePage> {
 
     return LayoutBuilder(builder: (context, constraints) {
       if (constraints.maxWidth <= 600) {
-        return scaffoldForNarrowSreens(isDarkMode, context, constraints, userSelectedPage);
+        return scaffoldForNarrowSreens(
+            isDarkMode, context, constraints, userSelectedPage);
       } else {
-        return scaffoldForWideSreens(isDarkMode, context, constraints, userSelectedPage);
+        return scaffoldForWideSreens(
+            isDarkMode, context, constraints, userSelectedPage);
       }
     });
   }
@@ -78,9 +80,9 @@ class _HomePageState extends State<HomePage> {
         currentIndex: selectedIndex,
         selectedItemColor: Colors.blue.shade200,
         onTap: (value) {
-              setState(() {
-                selectedIndex = value;
-              });
+          setState(() {
+            selectedIndex = value;
+          });
         },
         items: const [
           BottomNavigationBarItem(

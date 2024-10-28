@@ -2,7 +2,7 @@
 import 'package:flutter/services.dart' show ByteData, rootBundle;
 import 'package:excel/excel.dart';
 
-import 'package:bat_species/src/data/model/model.dart';
+import 'package:travelers_guide_to_bats/src/data/model/model.dart' as model;
 
 Future<void> loadData() async {
   // Load excel file from assets.
@@ -12,9 +12,9 @@ Future<void> loadData() async {
       data.buffer.asUint8List(data.offsetInBytes, data.lengthInBytes);
   var excel = Excel.decodeBytes(bytes);
   // Loop over Excel sheets.
-  for (var table in excel.tables.keys) {
-    print('Excel sheet: $table');
-  }
+  // for (var table in excel.tables.keys) {
+  //   print('Excel sheet: $table');
+  // }
 
   // Help function.
   String cellValueToString(element) =>
@@ -28,7 +28,7 @@ Future<void> loadData() async {
         }
         String countryCode = cellValueToString(row.elementAt(0));
         String countryName = cellValueToString(row.elementAt(1));
-        addCountry(countryCode, countryName);
+        model.addCountry(countryCode, countryName);
       }
     }
     if (sheetName == 'Chiroptera by country') {
@@ -38,7 +38,7 @@ Future<void> loadData() async {
         }
         String countryCode = cellValueToString(row.elementAt(0));
         String taxonId = cellValueToString(row.elementAt(1));
-        addTaxonToCountry(countryCode, taxonId);
+        model.addTaxonToCountry(countryCode, taxonId);
       }
     }
     if (sheetName == 'Chiroptera info') {
@@ -59,7 +59,7 @@ Future<void> loadData() async {
         String publishedYear = cellValueToString(row.elementAt(10));
         String redListCategory = cellValueToString(row.elementAt(11));
 
-        addTaxonInfo(
+        model.addTaxonInfo(
             scientificName,
             taxonId,
             taxonKingdom,
@@ -76,14 +76,14 @@ Future<void> loadData() async {
     }
   });
 
-  sortCountries();
-  sortTaxaInfo();
+  model.sortCountries();
+  model.sortTaxaInfo();
 
-  print('countries.length: ${countries.length}');
-  print('countryNameByCountryCode.length: ${countryNameByCountryCode.length}');
-  print('taxaByCountryCode.length: ${taxaByCountryCode.length}');
-  print('taxaInfo.length: ${taxaInfo.length}');
-  print('infoById.length: ${infoById.length}');
+  // print('countries.length: ${model.countries.length}');
+  // print('countryNameByCountryCode.length: ${model.countryNameByCountryCode.length}');
+  // print('taxaByCountryCode.length: ${model.taxaByCountryCode.length}');
+  // print('taxaInfo.length: ${model.taxaInfo.length}');
+  // print('infoById.length: ${model.infoById.length}');
 }
 
 // scientific_name 0

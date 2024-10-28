@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 part 'theme_state.dart';
 
 class ThemeCubit extends Cubit<ThemeState> {
-
   // static final ThemeData _lightTheme = ThemeData.light();
   // static final ThemeData _darkTheme = ThemeData.dark();
 
@@ -19,11 +18,11 @@ class ThemeCubit extends Cubit<ThemeState> {
     ),
     textTheme: const TextTheme(
       titleLarge: TextStyle(
-        fontSize: 28,
+        fontSize: 24,
         fontWeight: FontWeight.bold,
-        ),
       ),
-    );
+    ),
+  );
   static final ThemeData _darkTheme = ThemeData(
     useMaterial3: true,
     colorScheme: ColorScheme.fromSeed(
@@ -34,11 +33,11 @@ class ThemeCubit extends Cubit<ThemeState> {
     ),
     textTheme: const TextTheme(
       titleLarge: TextStyle(
-        fontSize: 28,
+        fontSize: 24,
         fontWeight: FontWeight.bold,
-        ),
       ),
-    );
+    ),
+  );
 
   ThemeCubit() : super(ThemeState(_darkTheme));
 

@@ -1,5 +1,6 @@
-import 'package:bat_species/src/data/model/model.dart' as model;
 import 'package:flutter/material.dart';
+import 'package:travelers_guide_to_bats/src/data/model/model.dart' as model;
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class SpeciesListView extends StatelessWidget {
   const SpeciesListView({
@@ -13,7 +14,7 @@ class SpeciesListView extends StatelessWidget {
       child: Column(
         children: [
           Padding(
-            padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),  
+            padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [

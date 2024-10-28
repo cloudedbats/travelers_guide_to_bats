@@ -1,2 +1,1 @@
-
-export 'package:bat_species/src/app/pages/main_page.dart';
+export 'package:travelers_guide_to_bats/src/app/pages/main_page.dart';
