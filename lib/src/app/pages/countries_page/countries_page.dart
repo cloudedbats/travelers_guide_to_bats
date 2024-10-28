@@ -15,12 +15,12 @@ class CountryListView extends StatelessWidget {
         children: [
           Padding(
             padding: const EdgeInsets.fromLTRB(20, 0, 50, 5),
-            // child: Text('Filter...'),
             child: TextFormField(
               decoration: const InputDecoration(
                 border: UnderlineInputBorder(),
                 labelText: 'Country name/code filter',
               ),
+              initialValue: CountriesCubit.getLastUsedFilterString(),
               onChanged: (value) =>
                   context.read<CountriesCubit>().filterCountryByString(value),
             ),

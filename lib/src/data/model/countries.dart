@@ -21,7 +21,7 @@ void addCountry(String countryCode, String countryName) {
   countryNameByCountryCode[countryCode] = countryName;
 }
 
-void addTaxonToCountry(String taxonId, String countryCode) {
+void addTaxonToCountry(String countryCode, String taxonId) {
   // Add object to lookup map.
   if (!taxaByCountryCode.containsKey(countryCode)) {
     taxaByCountryCode[countryCode] = [];
@@ -43,8 +43,7 @@ List<Country> filterCountriesByString(String filterString) {
   List<Country> filteredList = countries
       .where((a) =>
           a.countryName.toLowerCase().contains(filterString.toLowerCase()) ||
-          a.countryCode.toLowerCase().contains(filterString.toLowerCase())
-          )
+          a.countryCode.toLowerCase().contains(filterString.toLowerCase()))
       .toList();
   return filteredList;
 }

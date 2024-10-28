@@ -21,7 +21,7 @@ class _HomePageState extends State<HomePage> {
     Widget userSelectedPage;
     switch (selectedIndex) {
       case 0:
-        userSelectedPage = const SpeciesListView();
+        userSelectedPage = SpeciesListView();
         break;
       case 1:
         userSelectedPage = const CountryListView();

@@ -1,10 +1,6 @@
 part of 'species_cubit.dart';
 
-sealed class SpeciesState extends Equatable {
-  const SpeciesState();
-
-  @override
-  List<Object> get props => [];
+class SpeciesState {
+  final SpeciesResultData speciesResultData;
+  SpeciesState(this.speciesResultData);
 }
-
-final class SpeciesInitial extends SpeciesState {}

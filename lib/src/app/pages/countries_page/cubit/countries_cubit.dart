@@ -21,9 +21,12 @@ class CountriesResultData {
 class CountriesCubit extends Cubit<CountriesState> {
   CountriesCubit() : super(CountriesState(CountriesResultData()));
 
+  static String lastUsedFilterString = '';
+
   Future<void> setInitialCountry() async {
     // Load stored value.
-    final filterString = await _loadCountryFilterString();
+    // final filterString = await _loadCountryFilterString();
+    String filterString = '';
     // Tell consumers that we are working.
     CountriesResultData result = CountriesResultData();
     result.status = Status.loading;
@@ -49,12 +52,18 @@ class CountriesCubit extends Cubit<CountriesState> {
   }
 
   Future<void> _saveCountryFilterString(String filterString) async {
+    lastUsedFilterString = filterString;
     final prefs = await SharedPreferences.getInstance();
     await prefs.setString('filterString', filterString);
   }
 
-  Future<String> _loadCountryFilterString() async {
-    final prefs = await SharedPreferences.getInstance();
-    return prefs.getString('filterString') ?? '';
+  // Future<String> _loadCountryFilterString() async {
+  //   final prefs = await SharedPreferences.getInstance();
+  //   String filterString = prefs.getString('filterString') ?? '';
+  //   return filterString;
+  // }
+
+  static String getLastUsedFilterString() {
+    return lastUsedFilterString;
   }
 }

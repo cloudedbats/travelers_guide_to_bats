@@ -1,3 +1,5 @@
+import 'package:travelers_guide_to_bats/src/data/model/model.dart' as model;
+
 // Runtime data storage.
 List<TaxonInfo> taxaInfo = List.empty(growable: true);
 Map<String, TaxonInfo> infoById = {};
@@ -74,6 +76,23 @@ void clearTaxonInfoList() {
 
 void sortTaxaInfo() {
   return taxaInfo.sort((a, b) => a.scientificName.compareTo(b.scientificName));
+}
+
+List<TaxonInfo> filterSpeciesByCountryCode(String? countryCode) {
+  List<TaxonInfo> filteredTaxaInfo = List.empty(growable: true);
+  if (countryCode != null && countryCode != '') {
+    List? speciesList = model.taxaByCountryCode[countryCode];
+    if (speciesList != null) {
+      for (String taxonId in speciesList) {
+        TaxonInfo? taxonInfo = model.infoById[taxonId];
+        if (taxonInfo != null) {
+          filteredTaxaInfo.add(taxonInfo);
+        }
+      }
+    }
+  }
+  filteredTaxaInfo.sort((a, b) => a.scientificName.compareTo(b.scientificName));
+  return filteredTaxaInfo;
 }
 
 // scientific_name 0

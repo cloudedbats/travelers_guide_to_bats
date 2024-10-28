@@ -1,8 +1,9 @@
-import 'package:travelers_guide_to_bats/src/app/pages/countries_page/cubit/countries_cubit.dart';
 import 'package:travelers_guide_to_bats/src/app/pages/home_page/home_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:travelers_guide_to_bats/src/app/pages/home_page/cubit/theme_cubit.dart';
+import 'package:travelers_guide_to_bats/src/app/pages/countries_page/cubit/countries_cubit.dart';
+import 'package:travelers_guide_to_bats/src/app/pages/species_page/cubit/species_cubit.dart';
 
 void startApp() {
   runApp(MultiBlocProvider(
@@ -11,7 +12,11 @@ void startApp() {
         create: (context) => ThemeCubit()..setInitialTheme(),
       ),
       BlocProvider<CountriesCubit>(
-          create: (context) => CountriesCubit()..setInitialCountry()),
+        create: (context) => CountriesCubit()..setInitialCountry(),
+      ),
+      BlocProvider<SpeciesCubit>(
+        create: (context) => SpeciesCubit()..setInitialSpecies(),
+      ),
     ],
     child: _MainApp(),
   ));
