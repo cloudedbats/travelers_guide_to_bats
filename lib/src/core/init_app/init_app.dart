@@ -7,7 +7,7 @@ import 'package:travelers_guide_to_bats/src/data/model/model.dart' as model;
 Future<void> loadData() async {
   // Load excel file from assets.
   ByteData data =
-      await rootBundle.load('assets/files/redlist_chiroptera_2021-1.xlsx');
+      await rootBundle.load('assets/files/redlist_chiroptera_2024-2.xlsx');
   List<int> bytes =
       data.buffer.asUint8List(data.offsetInBytes, data.lengthInBytes);
   var excel = Excel.decodeBytes(bytes);
