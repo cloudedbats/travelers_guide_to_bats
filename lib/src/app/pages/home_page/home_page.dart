@@ -207,17 +207,42 @@ class _HomePageState extends State<HomePage> {
     return showAboutDialog(
       context: context,
       // applicationIcon: const FlutterLogo(),
-      applicationIcon: Image.asset('assets/icons/cloudedbats_logo.png',
-      scale: 4,
+      applicationIcon: Image.asset(
+        'assets/icons/cloudedbats_logo.png',
+        scale: 2,
       ),
       applicationName: 'Traveler\'s Guide to Bats',
       applicationVersion: '2024.0.0 - development',
+      applicationLegalese:
+          'The MIT License (MIT). Copyright (c) 2024 Arnold Andreasson.',
       children: [
         RichText(
-          text: TextSpan(children: <TextSpan>[
-            TextSpan(text: 'This is...'),
-          ]),
-        )
+          text: TextSpan(
+              style: Theme.of(context).textTheme.bodyMedium,
+              children: <TextSpan>[
+                TextSpan(text: '\n'),
+                TextSpan(text: 'Sometimes it is hard to find species lists '),
+                TextSpan(text: 'of bats for different countries.\n'),
+                TextSpan(text: 'IUCN Red List of Threatened Species '),
+                TextSpan(text: 'maintains that kind of data for bats.\n'),
+                TextSpan(text: 'The purpose of this app is to make it easier '),
+                TextSpan(text: 'to know what to look for\n'),
+                TextSpan(text: 'when traveling to new countries.'),
+                TextSpan(text: '\n\n'),
+                TextSpan(text: 'Citation text for data collected from IUCN:\n'),
+                TextSpan(
+                    text: 'IUCN 2024. IUCN Red List of Threatened Species. '),
+                TextSpan(text: 'Version 2024-2 <www.iucnredlist.org>'),
+                TextSpan(text: '\n\n'),
+                TextSpan(text: 'For developers:\nI wrote this app because I '),
+                TextSpan(
+                    text: 'wanted to learn the basics in Flutter and Dart.\n'),
+                TextSpan(text: 'You can read more about it at GitHub:\n'),
+                TextSpan(
+                    text:
+                        'https://github.com/cloudedbats/travelers_guide_to_bats'),
+              ]),
+        ),
       ],
     );
   }
