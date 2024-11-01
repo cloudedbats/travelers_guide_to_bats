@@ -48,15 +48,23 @@ class _HomePageState extends State<HomePage> {
       BoxConstraints constraints, Widget userSelectedPage) {
     return Scaffold(
       appBar: AppBar(
+          forceMaterialTransparency: true,
           title: const Center(
-            child: Text('Traveler\'s Guide to Bats'),
+            child: Text(
+              'Traveler\'s Guide to Bats',
+              style: TextStyle(
+                fontSize: 18,
+              ),
+            ),
           ),
           leading: IconButton(
-            onPressed: () {},
+            onPressed: () {
+              aboutDialog(context);
+            },
             icon: const Icon(Icons.more_vert),
           ),
           actions: [
-            const Text('Night  '),
+            const Text('Dark '),
             SizedBox(
               width: 40,
               height: 28,
@@ -87,7 +95,7 @@ class _HomePageState extends State<HomePage> {
         items: const [
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
-            label: 'Home',
+            label: 'Bats by country',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.public),
@@ -115,15 +123,23 @@ class _HomePageState extends State<HomePage> {
       BoxConstraints constraints, Widget userSelectedPage) {
     return Scaffold(
       appBar: AppBar(
+          forceMaterialTransparency: true,
           title: const Center(
-            child: Text('Traveler\'s Guide to Bats'),
+            child: Text(
+              'Traveler\'s Guide to Bats',
+              // style: TextStyle(
+              //   fontSize: 18,
+              // ),
+            ),
           ),
           leading: IconButton(
-            onPressed: () {},
+            onPressed: () {
+              aboutDialog(context);
+            },
             icon: const Icon(Icons.more_vert),
           ),
           actions: [
-            const Text('Night  '),
+            const Text('Dark '),
             SizedBox(
               width: 40,
               height: 28,
@@ -149,15 +165,24 @@ class _HomePageState extends State<HomePage> {
             extended: constraints.maxWidth >= 1000,
             destinations: const [
               NavigationRailDestination(
-                icon: Icon(Icons.home),
-                label: Text('Home'),
+                icon: Tooltip(
+                  message: 'Bats by country',
+                  child: Icon(Icons.home),
+                ),
+                label: Text('Bats by country'),
               ),
               NavigationRailDestination(
-                icon: Icon(Icons.public),
+                icon: Tooltip(
+                  message: 'Countries',
+                  child: Icon(Icons.public),
+                ),
                 label: Text('Countries'),
               ),
               NavigationRailDestination(
-                icon: Icon(Icons.tune),
+                icon: Tooltip(
+                  message: 'Settings',
+                  child: Icon(Icons.tune),
+                ),
                 label: Text('Settings'),
               ),
             ],
@@ -175,6 +200,25 @@ class _HomePageState extends State<HomePage> {
           ),
         ],
       ),
+    );
+  }
+
+  void aboutDialog(BuildContext context) {
+    return showAboutDialog(
+      context: context,
+      // applicationIcon: const FlutterLogo(),
+      applicationIcon: Image.asset('assets/icons/cloudedbats_logo.png',
+      scale: 4,
+      ),
+      applicationName: 'Traveler\'s Guide to Bats',
+      applicationVersion: '2024.0.0 - development',
+      children: [
+        RichText(
+          text: TextSpan(children: <TextSpan>[
+            TextSpan(text: 'This is...'),
+          ]),
+        )
+      ],
     );
   }
 }

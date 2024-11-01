@@ -49,7 +49,7 @@ class _SpeciesListViewState extends State<SpeciesListView> {
           Expanded(
             child: BlocBuilder<SpeciesCubit, SpeciesState>(
               builder: (context, state) {
-                print(state.speciesResultData.status);
+                // print(state.speciesResultData.status);
                 if (state.speciesResultData.status == Status.success) {
                   var speciesList = state.speciesResultData.filteredSpecies;
                   return ListView.builder(
