@@ -1,12 +1,12 @@
 {
-    "name": "travelers_guide_to_bats",
-    "short_name": "travelers_guide_to_bats",
+    "name": "Traveler's Guide to Bats",
+    "short_name": "IUCN-Bats",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
     "theme_color": "#0175C2",
-    "description": "A new Flutter project.",
-    "orientation": "portrait-primary",
+    "description": "This app shows bat species in various countries.",
+    "orientation": "natural",
     "prefer_related_applications": false,
     "icons": [
         {

@@ -221,23 +221,23 @@ class _HomePageState extends State<HomePage> {
               style: Theme.of(context).textTheme.bodyMedium,
               children: <TextSpan>[
                 TextSpan(text: '\n'),
-                TextSpan(text: 'Sometimes it is hard to find species lists '),
-                TextSpan(text: 'of bats for different countries.\n'),
-                TextSpan(text: 'IUCN Red List of Threatened Species '),
-                TextSpan(text: 'maintains that kind of data for bats.\n'),
+                TextSpan(text: 'Sometimes it is difficult to find species '),
+                TextSpan(text: 'lists of bats for different countries, '),
+                TextSpan(text: 'but IUCN Red List of Threatened Species '),
+                TextSpan(text: 'maintains that type of data.\n'),
                 TextSpan(text: 'The purpose of this app is to make it easier '),
-                TextSpan(text: 'to know what to look for\n'),
-                TextSpan(text: 'when traveling to new countries.'),
+                TextSpan(text: 'to know what to look for '),
+                TextSpan(text: 'when traveling to various countries.'),
                 TextSpan(text: '\n\n'),
-                TextSpan(text: 'Citation text for data collected from IUCN:\n'),
+                TextSpan(text: 'Citation text for data from IUCN:\n'),
                 TextSpan(
-                    text: 'IUCN 2024. IUCN Red List of Threatened Species. '),
-                TextSpan(text: 'Version 2024-2 <www.iucnredlist.org>'),
+                    text:
+                        '"IUCN 2024. IUCN Red List of Threatened Species. Version 2024-2 <www.iucnredlist.org>".'),
                 TextSpan(text: '\n\n'),
-                TextSpan(text: 'For developers:\nI wrote this app because I '),
-                TextSpan(
-                    text: 'wanted to learn the basics in Flutter and Dart.\n'),
-                TextSpan(text: 'You can read more about it at GitHub:\n'),
+                TextSpan(text: 'For developers:\n'),
+                TextSpan(text: 'I wrote this app because I wanted to learn '),
+                TextSpan(text: 'the basics of Flutter and Dart. '),
+                TextSpan(text: 'You can read more about it on GitHub:\n'),
                 TextSpan(
                     text:
                         'https://github.com/cloudedbats/travelers_guide_to_bats'),
