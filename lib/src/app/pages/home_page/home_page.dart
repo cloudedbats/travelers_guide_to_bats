@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:package_info_plus/package_info_plus.dart';
 import 'package:travelers_guide_to_bats/src/app/pages/countries_page/countries_page.dart';
 import 'package:travelers_guide_to_bats/src/app/pages/species_page/species_page.dart';
 import 'package:travelers_guide_to_bats/src/app/pages/home_page/cubit/theme_cubit.dart'
@@ -14,21 +15,26 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   var selectedIndex = 0;
+  var version = '';
 
   @override
   Widget build(BuildContext context) {
+    getVersion();
     final isDarkMode = Theme.of(context).brightness == Brightness.dark;
     Widget userSelectedPage;
     switch (selectedIndex) {
       case 0:
-        userSelectedPage = SpeciesListView();
+        userSelectedPage = const SpeciesListView();
         break;
       case 1:
-        userSelectedPage = const CountryListView();
-        break;
-      case 2:
         userSelectedPage = const Placeholder();
         break;
+      case 2:
+        userSelectedPage = const CountryListView();
+        break;
+      // case 3:
+      //   aboutDialog(context);
+      //   break;
       default:
         throw UnimplementedError('No widget for index: $selectedIndex');
     }
@@ -57,12 +63,12 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
           ),
-          leading: IconButton(
-            onPressed: () {
-              aboutDialog(context);
-            },
-            icon: const Icon(Icons.more_vert),
-          ),
+          // leading: IconButton(
+          //   onPressed: () {
+          //     aboutDialog(context);
+          //   },
+          //   icon: const Icon(Icons.info),
+          // ),
           actions: [
             const Text('Dark '),
             SizedBox(
@@ -86,24 +92,34 @@ class _HomePageState extends State<HomePage> {
           ]),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: selectedIndex,
-        selectedItemColor: Colors.blue.shade200,
+        selectedItemColor: Colors.blueGrey.shade200,
+        unselectedItemColor: Colors.blueGrey.shade100,
+        showUnselectedLabels: true,
         onTap: (value) {
-          setState(() {
-            selectedIndex = value;
-          });
+          if (value == 3) {
+            aboutDialog(context);
+          } else {
+            setState(() {
+              selectedIndex = value;
+            });
+          }
         },
         items: const [
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
-            label: 'Bats by country',
+            label: 'By country',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.tune),
+            label: 'Bats',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.public),
             label: 'Countries',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.tune),
-            label: 'Settings',
+            icon: Icon(Icons.info),
+            label: 'About',
           ),
         ],
       ),
@@ -136,7 +152,10 @@ class _HomePageState extends State<HomePage> {
             onPressed: () {
               aboutDialog(context);
             },
-            icon: const Icon(Icons.more_vert),
+            icon: Image.asset(
+              'assets/icons/cloudedbats_logo.png',
+              scale: 2,
+            ),
           ),
           actions: [
             const Text('Dark '),
@@ -162,37 +181,47 @@ class _HomePageState extends State<HomePage> {
       body: Row(
         children: [
           NavigationRail(
-            extended: constraints.maxWidth >= 1000,
-            destinations: const [
-              NavigationRailDestination(
-                icon: Tooltip(
-                  message: 'Bats by country',
-                  child: Icon(Icons.home),
+              extended: constraints.maxWidth >= 1000,
+              destinations: const [
+                NavigationRailDestination(
+                  icon: Tooltip(
+                    message: 'Bats by country',
+                    child: Icon(Icons.home),
+                  ),
+                  label: Text('By country'),
                 ),
-                label: Text('Bats by country'),
-              ),
-              NavigationRailDestination(
-                icon: Tooltip(
-                  message: 'Countries',
-                  child: Icon(Icons.public),
+                NavigationRailDestination(
+                  icon: Tooltip(
+                    message: 'Bats',
+                    child: Icon(Icons.tune),
+                  ),
+                  label: Text('Bats'),
                 ),
-                label: Text('Countries'),
-              ),
-              NavigationRailDestination(
-                icon: Tooltip(
-                  message: 'Settings',
-                  child: Icon(Icons.tune),
+                NavigationRailDestination(
+                  icon: Tooltip(
+                    message: 'Countries',
+                    child: Icon(Icons.public),
+                  ),
+                  label: Text('Countries'),
                 ),
-                label: Text('Settings'),
-              ),
-            ],
-            selectedIndex: selectedIndex,
-            onDestinationSelected: (value) {
-              setState(() {
-                selectedIndex = value;
-              });
-            },
-          ),
+                NavigationRailDestination(
+                  icon: Tooltip(
+                    message: 'About',
+                    child: Icon(Icons.info),
+                  ),
+                  label: Text('About'),
+                ),
+              ],
+              selectedIndex: selectedIndex,
+              onDestinationSelected: (value) {
+                if (value == 3) {
+                  aboutDialog(context);
+                } else {
+                  setState(() {
+                    selectedIndex = value;
+                  });
+                }
+              }),
           Expanded(
             child: Container(
               child: userSelectedPage,
@@ -204,7 +233,7 @@ class _HomePageState extends State<HomePage> {
   }
 
   void aboutDialog(BuildContext context) {
-    return showAboutDialog(
+    showAboutDialog(
       context: context,
       // applicationIcon: const FlutterLogo(),
       applicationIcon: Image.asset(
@@ -212,7 +241,8 @@ class _HomePageState extends State<HomePage> {
         scale: 2,
       ),
       applicationName: 'Traveler\'s Guide to Bats',
-      applicationVersion: '2024.0.0 - development',
+      // applicationVersion: '2024.1.0 - development',
+      applicationVersion: version,
       applicationLegalese:
           'The MIT License (MIT). Copyright (c) 2024 Arnold Andreasson.',
       children: [
@@ -245,5 +275,12 @@ class _HomePageState extends State<HomePage> {
         ),
       ],
     );
+  }
+
+  void getVersion() {
+    // PackageInfo packageInfo = await PackageInfo.fromPlatform();
+    PackageInfo.fromPlatform().then((PackageInfo packageInfo) {
+      version = packageInfo.version;
+    });
   }
 }

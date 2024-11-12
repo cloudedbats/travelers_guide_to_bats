@@ -4,7 +4,7 @@ import 'package:travelers_guide_to_bats/src/data/model/model.dart' as model;
 import 'package:travelers_guide_to_bats/src/app/pages/species_page/cubit/species_cubit.dart';
 
 class SpeciesListView extends StatefulWidget {
-  SpeciesListView({
+  const SpeciesListView({
     super.key,
   });
 
@@ -26,12 +26,12 @@ class _SpeciesListViewState extends State<SpeciesListView> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                // const Text('Country '),
                 DropdownButton(
                   hint: const Text('Select country'),
                   items: model.countries.map((model.Country item) {
                     return DropdownMenuItem(
-                        value: item.countryCode, child: Text(item.countryName));
+                        value: item.countryCode,
+                        child: Text(item.countryName));
                   }).toList(),
                   value: _dropDownValue,
                   onChanged: (String? value) {

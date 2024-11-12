@@ -1,10 +1,10 @@
 name: travelers_guide_to_bats
 description: "Traveler's  Guide to Bats. Developed in Flutter and Dart."
 publish_to: 'none'
-version: 0.1.0
+version: 2024.1.0-development
 
 environment:
-  sdk: ^3.5.3
+  sdk: ^3.5.0
 
 dependencies:
   flutter_bloc:
@@ -13,6 +13,7 @@ dependencies:
   hive_flutter:
   path_provider:
   shared_preferences:
+  package_info_plus:
   excel:
   flutter:
     sdk: flutter
@@ -22,7 +23,7 @@ dev_dependencies:
     sdk: flutter
   hive_generator:
   build_runner:
-  flutter_lints: ^5.0.0
+  flutter_lints: 
 
 flutter:
   uses-material-design: true
