@@ -21,12 +21,13 @@ class SpeciesResultData {
 class SpeciesCubit extends Cubit<SpeciesState> {
   SpeciesCubit() : super(SpeciesState(SpeciesResultData()));
 
-  static String lastUsedFilterString = '';
+  static String? lastUsedFilterString;
 
   Future<void> setInitialSpecies() async {
     // Load stored value.
-    // final filterString = await _loadSpeciesFilterString();
-    String filterString = '';
+    final filterString = await _loadSpeciesFilterString();
+    lastUsedFilterString = filterString;
+    // String filterString = '';
     // Tell consumers that we are working.
     SpeciesResultData result = SpeciesResultData();
     result.status = Status.loading;
@@ -57,13 +58,13 @@ class SpeciesCubit extends Cubit<SpeciesState> {
     await prefs.setString('filterString', filterString);
   }
 
-  // Future<String> _loadSpeciesFilterString() async {
-  //   final prefs = await SharedPreferences.getInstance();
-  //   String filterString = prefs.getString('filterString') ?? '';
-  //   return filterString;
-  // }
+  Future<String> _loadSpeciesFilterString() async {
+    final prefs = await SharedPreferences.getInstance();
+    String filterString = prefs.getString('filterString') ?? '';
+    return filterString;
+  }
 
-  static String getLastUsedFilterString() {
-    return lastUsedFilterString;
+  static String? getLastUsedFilterString() {
+    return lastUsedFilterString  == '' ? null : lastUsedFilterString;
   }
 }

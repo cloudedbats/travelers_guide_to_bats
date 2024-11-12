@@ -3,17 +3,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:travelers_guide_to_bats/src/data/model/model.dart' as model;
 import 'package:travelers_guide_to_bats/src/app/pages/species_page/cubit/species_cubit.dart';
 
-class SpeciesListView extends StatefulWidget {
+class SpeciesListView extends StatelessWidget {
   const SpeciesListView({
     super.key,
   });
-
-  @override
-  State<SpeciesListView> createState() => _SpeciesListViewState();
-}
-
-class _SpeciesListViewState extends State<SpeciesListView> {
-  String? _dropDownValue;
 
   @override
   Widget build(BuildContext context) {
@@ -33,11 +26,8 @@ class _SpeciesListViewState extends State<SpeciesListView> {
                         value: item.countryCode,
                         child: Text(item.countryName));
                   }).toList(),
-                  value: _dropDownValue,
+                  value: SpeciesCubit.getLastUsedFilterString(),
                   onChanged: (String? value) {
-                    setState(() {
-                      _dropDownValue = value;
-                    });
                     context
                         .read<SpeciesCubit>()
                         .filterSpeciesByString(value ?? '');
