@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:travelers_guide_to_bats/src/data/model/model.dart' as model;
-import 'package:travelers_guide_to_bats/src/app/pages/main_page/cubit/data_cubit.dart';
-import 'package:travelers_guide_to_bats/src/app/pages/by_country_page/cubit/by_country_cubit.dart';
+import '../../../data/model/model.dart' as model;
+import '../main_page/cubit/data_cubit.dart';
+import 'cubit/by_country_cubit.dart';
 
 class ByCountryView extends StatefulWidget {
   const ByCountryView({

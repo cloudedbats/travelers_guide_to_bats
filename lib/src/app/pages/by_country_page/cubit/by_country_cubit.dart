@@ -1,6 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:travelers_guide_to_bats/src/data/model/model.dart' as model;
+import '../../../../data/model/model.dart' as model;
 
 part 'by_country_state.dart';
 

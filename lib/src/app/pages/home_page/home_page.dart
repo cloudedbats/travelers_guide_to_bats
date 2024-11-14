@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:package_info_plus/package_info_plus.dart';
-import 'package:travelers_guide_to_bats/src/app/pages/countries_page/countries_page.dart';
-import 'package:travelers_guide_to_bats/src/app/pages/by_country_page/by_country_page.dart';
-import 'package:travelers_guide_to_bats/src/app/pages/main_page/cubit/theme_cubit.dart'
+import '../countries_page/countries_page.dart';
+import '../by_country_page/by_country_page.dart';
+import '../main_page/cubit/theme_cubit.dart'
     as theme_cubit;
 
 class HomePage extends StatefulWidget {

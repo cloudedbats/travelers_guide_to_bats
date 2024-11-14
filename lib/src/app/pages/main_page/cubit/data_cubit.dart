@@ -1,5 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:travelers_guide_to_bats/src/core/load_data.dart' as core;
+import '../../../../core/load_data.dart' as core;
 
 part 'data_state.dart';
 

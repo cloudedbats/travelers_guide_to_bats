@@ -1,4 +1,4 @@
-import 'package:travelers_guide_to_bats/src/data/model/model.dart' as model;
+import 'model.dart' as model;
 
 // Runtime data storage.
 List<TaxonInfo> taxaInfo = List.empty(growable: true);

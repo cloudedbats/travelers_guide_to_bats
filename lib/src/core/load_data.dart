@@ -1,8 +1,7 @@
 // import 'package:path_provider/path_provider.dart';
 import 'package:flutter/services.dart' show ByteData, rootBundle;
 import 'package:excel/excel.dart';
-
-import 'package:travelers_guide_to_bats/src/data/model/model.dart' as model;
+import '../data/model/model.dart' as model;
 
 Future<void> loadData() async {
   // For TEST.

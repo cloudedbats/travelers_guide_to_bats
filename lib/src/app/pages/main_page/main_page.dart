@@ -1,10 +1,10 @@
-import 'package:travelers_guide_to_bats/src/app/pages/home_page/home_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:travelers_guide_to_bats/src/app/pages/main_page/cubit/theme_cubit.dart';
-import 'package:travelers_guide_to_bats/src/app/pages/main_page/cubit/data_cubit.dart';
-import 'package:travelers_guide_to_bats/src/app/pages/countries_page/cubit/countries_cubit.dart';
-import 'package:travelers_guide_to_bats/src/app/pages/by_country_page/cubit/by_country_cubit.dart';
+import 'cubit/theme_cubit.dart';
+import 'cubit/data_cubit.dart';
+import '../home_page/home_page.dart';
+import '../countries_page/cubit/countries_cubit.dart';
+import '../by_country_page/cubit/by_country_cubit.dart';
 
 void startApp() {
   runApp(MultiBlocProvider(
