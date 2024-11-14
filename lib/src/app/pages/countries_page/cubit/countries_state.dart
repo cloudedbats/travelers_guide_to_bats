@@ -1,6 +1,6 @@
 part of 'countries_cubit.dart';
 
 class CountriesState {
-  final CountriesResultData countriesResultData;
+  final CountriesResult countriesResultData;
   CountriesState(this.countriesResultData);
 }

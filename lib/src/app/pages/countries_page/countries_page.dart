@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:travelers_guide_to_bats/src/app/pages/main_page/cubit/data_cubit.dart';
-import 'package:travelers_guide_to_bats/src/app/pages/countries_page/cubit/countries_cubit.dart';
+import 'cubit/countries_cubit.dart';
 
 class CountryListView extends StatefulWidget {
   const CountryListView({
@@ -18,44 +17,17 @@ class _CountryListViewState extends State<CountryListView> {
   @override
   void initState() {
     super.initState();
-    filterString = CountriesCubit.getLastUsedFilterString();
+    filterString = BlocProvider.of<CountriesCubit>(context).lastUsedFilter();
+    BlocProvider.of<CountriesCubit>(context)
+        .filterCountryByString(filterString ?? '');
   }
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
-      child: BlocConsumer<DataCubit, DataState>(
-        listenWhen: (previous, current) {
-          return true;
-        },
-        listener: (context, state) {
-          // String enumAsString = state.dataResultData.status.name;
-          // print('ByCountry status 2: $enumAsString');
-
-          if (state.dataResultData.status == DataStatus.loading) {
-            // TODO: Use widget instead.
-            // print('Loading Data - Countries');
-          }
-          if (state.dataResultData.status == DataStatus.failure) {
-            // TODO: Use widget instead.
-            print('Exception Data 2: ${DataCubit.getLastException()}');
-          }
-          if (state.dataResultData.status == DataStatus.success) {
-            String? value = CountriesCubit.getLastUsedFilterString();
-            context.read<CountriesCubit>().filterCountryByString(value ?? '');
-          }
-        },
-        buildWhen: (previous, current) {
-          if (current.dataResultData.status == DataStatus.loading) {
-            return false;
-          }
-          if (current.dataResultData.status == DataStatus.success) {
-            return true;
-          }
-          return false;
-        },
-        builder: (context, state) {
+      child: Builder(
+        builder: (context) {
           return Column(
             children: [
               Padding(

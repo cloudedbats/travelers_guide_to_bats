@@ -39,7 +39,7 @@ void sortCountries() {
   countries.sort((a, b) => a.countryName.compareTo(b.countryName));
 }
 
-List<Country> filterCountriesByString(String filterString) {
+Future<List<Country>> filterCountriesByString(String filterString) async {
   List<Country> filteredList = countries
       .where((a) =>
           a.countryName.toLowerCase().contains(filterString.toLowerCase()) ||

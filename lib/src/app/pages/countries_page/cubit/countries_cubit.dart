@@ -6,57 +6,53 @@ part 'countries_state.dart';
 
 enum CountriesStatus { initial, loading, success, failure }
 
-class CountriesResultData {
+class CountriesResult {
   CountriesStatus status = CountriesStatus.initial;
-  String filterString = '';
+  String? filterString;
   List<model.Country> filteredCountries = [];
   String message = '';
 
-  CountriesResultData({
+  CountriesResult({
     this.status = CountriesStatus.initial,
-    this.filterString = '',
+    this.filterString,
     this.filteredCountries = const [],
     this.message = '',
   });
 }
 
 class CountriesCubit extends Cubit<CountriesState> {
-  CountriesCubit() : super(CountriesState(CountriesResultData()));
+  CountriesCubit() : super(CountriesState(CountriesResult()));
 
-  static String? lastUsedFilterString;
+  String? lastUsedFilterString;
 
   Future<void> loadInitialCountry() async {
     // Load stored value.
     final filterString = await _loadCountryFilterString();
     lastUsedFilterString = filterString;
-
-    // filterCountryByString(filterString);
-    // // Inform consumers.
-    // CountriesResultData result = CountriesResultData();
-    // result.status = CountriesStatus.success;
-    // emit(CountriesState(result));
   }
 
   Future<void> filterCountryByString(String filterString) async {
+    // Keep filterString for next app start.
     lastUsedFilterString = filterString;
+    _saveCountryFilterString(filterString);
     // Inform consumers.
-    CountriesResultData result = CountriesResultData();
+    late CountriesResult result;
+    result = CountriesResult();
     result.status = CountriesStatus.loading;
     emit(CountriesState(result));
     // Filtering based on filterString.
     try {
       late List<model.Country> filteredCountries;
-      filteredCountries = model.filterCountriesByString(filterString);
+      filteredCountries = await model.filterCountriesByString(filterString);
       // Inform consumers.
+      result = CountriesResult();
       result.status = CountriesStatus.success;
       result.filterString = filterString;
       result.filteredCountries = filteredCountries;
       emit(CountriesState(result));
-      // Keep filterString for next app start.
-      _saveCountryFilterString(filterString);
     } on Exception catch (e) {
       // Inform consumers.
-      result = CountriesResultData();
+      result = CountriesResult();
       result.status = CountriesStatus.failure;
       result.message = e.toString();
       emit(CountriesState(result));
@@ -74,7 +70,7 @@ class CountriesCubit extends Cubit<CountriesState> {
     return filterString;
   }
 
-  static String? getLastUsedFilterString() {
+  String? lastUsedFilter() {
     return lastUsedFilterString == '' ? null : lastUsedFilterString;
   }
 }
