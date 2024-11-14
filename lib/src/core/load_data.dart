@@ -5,6 +5,9 @@ import 'package:excel/excel.dart';
 import 'package:travelers_guide_to_bats/src/data/model/model.dart' as model;
 
 Future<void> loadData() async {
+  // For TEST.
+  // await Future.delayed(Duration(seconds: 15));
+
   // Load excel file from assets.
   ByteData data =
       await rootBundle.load('assets/files/redlist_chiroptera_2024-2.xlsx');
@@ -79,11 +82,12 @@ Future<void> loadData() async {
   model.sortCountries();
   model.sortTaxaInfo();
 
-  // print('countries.length: ${model.countries.length}');
-  // print('countryNameByCountryCode.length: ${model.countryNameByCountryCode.length}');
-  // print('taxaByCountryCode.length: ${model.taxaByCountryCode.length}');
-  // print('taxaInfo.length: ${model.taxaInfo.length}');
-  // print('infoById.length: ${model.infoById.length}');
+//   print('countries.length: ${model.countries.length}');
+//   print(
+//       'countryNameByCountryCode.length: ${model.countryNameByCountryCode.length}');
+//   print('taxaByCountryCode.length: ${model.taxaByCountryCode.length}');
+//   print('taxaInfo.length: ${model.taxaInfo.length}');
+//   print('infoById.length: ${model.infoById.length}');
 }
 
 // scientific_name 0

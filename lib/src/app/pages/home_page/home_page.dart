@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:travelers_guide_to_bats/src/app/pages/countries_page/countries_page.dart';
-import 'package:travelers_guide_to_bats/src/app/pages/species_page/species_page.dart';
-import 'package:travelers_guide_to_bats/src/app/pages/home_page/cubit/theme_cubit.dart'
+import 'package:travelers_guide_to_bats/src/app/pages/by_country_page/by_country_page.dart';
+import 'package:travelers_guide_to_bats/src/app/pages/main_page/cubit/theme_cubit.dart'
     as theme_cubit;
 
 class HomePage extends StatefulWidget {
@@ -24,7 +24,7 @@ class _HomePageState extends State<HomePage> {
     Widget userSelectedPage;
     switch (selectedIndex) {
       case 0:
-        userSelectedPage = const SpeciesListView();
+        userSelectedPage = const ByCountryView();
         break;
       case 1:
         userSelectedPage = const Placeholder();
@@ -63,12 +63,6 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
           ),
-          // leading: IconButton(
-          //   onPressed: () {
-          //     aboutDialog(context);
-          //   },
-          //   icon: const Icon(Icons.info),
-          // ),
           actions: [
             const Text('Dark '),
             SizedBox(
@@ -148,15 +142,15 @@ class _HomePageState extends State<HomePage> {
               // ),
             ),
           ),
-          leading: IconButton(
-            onPressed: () {
-              aboutDialog(context);
-            },
-            icon: Image.asset(
-              'assets/icons/cloudedbats_logo.png',
-              scale: 2,
-            ),
-          ),
+          // leading: IconButton(
+          //   onPressed: () {
+          //     aboutDialog(context);
+          //   },
+          //   icon: Image.asset(
+          //     'assets/icons/cloudedbats_logo.png',
+          //     scale: 2,
+          //   ),
+          // ),
           actions: [
             const Text('Dark '),
             SizedBox(

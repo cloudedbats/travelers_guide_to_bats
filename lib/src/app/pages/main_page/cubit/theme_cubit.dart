@@ -41,7 +41,7 @@ class ThemeCubit extends Cubit<ThemeState> {
 
   ThemeCubit() : super(ThemeState(_darkTheme));
 
-  Future<void> setInitialTheme() async {
+  Future<void> loadInitialTheme() async {
     final isDark = await _loadTheme();
     final themeData = isDark ? _darkTheme : _lightTheme;
     emit(ThemeState(themeData));

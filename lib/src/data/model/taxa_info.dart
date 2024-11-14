@@ -78,12 +78,12 @@ void sortTaxaInfo() {
   return taxaInfo.sort((a, b) => a.scientificName.compareTo(b.scientificName));
 }
 
-List<TaxonInfo> filterSpeciesByCountryCode(String? countryCode) {
+Future<List<TaxonInfo>> filterByCountryCode(String? countryCode) async {
   List<TaxonInfo> filteredTaxaInfo = List.empty(growable: true);
   if (countryCode != null && countryCode != '') {
-    List? speciesList = model.taxaByCountryCode[countryCode];
-    if (speciesList != null) {
-      for (String taxonId in speciesList) {
+    List? byCountry = model.taxaByCountryCode[countryCode];
+    if (byCountry != null) {
+      for (String taxonId in byCountry) {
         TaxonInfo? taxonInfo = model.infoById[taxonId];
         if (taxonInfo != null) {
           filteredTaxaInfo.add(taxonInfo);

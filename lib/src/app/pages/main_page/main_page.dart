@@ -1,21 +1,29 @@
 import 'package:travelers_guide_to_bats/src/app/pages/home_page/home_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:travelers_guide_to_bats/src/app/pages/home_page/cubit/theme_cubit.dart';
+import 'package:travelers_guide_to_bats/src/app/pages/main_page/cubit/theme_cubit.dart';
+import 'package:travelers_guide_to_bats/src/app/pages/main_page/cubit/data_cubit.dart';
 import 'package:travelers_guide_to_bats/src/app/pages/countries_page/cubit/countries_cubit.dart';
-import 'package:travelers_guide_to_bats/src/app/pages/species_page/cubit/species_cubit.dart';
+import 'package:travelers_guide_to_bats/src/app/pages/by_country_page/cubit/by_country_cubit.dart';
 
 void startApp() {
   runApp(MultiBlocProvider(
     providers: [
       BlocProvider<ThemeCubit>(
-        create: (context) => ThemeCubit()..setInitialTheme(),
+        lazy: false,
+        create: (context) => ThemeCubit()..loadInitialTheme(),
+      ),
+      BlocProvider<ByCountryCubit>(
+        lazy: false,
+        create: (context) => ByCountryCubit()..loadInitialByCountry(),
       ),
       BlocProvider<CountriesCubit>(
-        create: (context) => CountriesCubit()..setInitialCountry(),
+        lazy: false,
+        create: (context) => CountriesCubit()..loadInitialCountry(),
       ),
-      BlocProvider<SpeciesCubit>(
-        create: (context) => SpeciesCubit()..setInitialSpecies(),
+      BlocProvider<DataCubit>(
+        lazy: true,
+        create: (context) => DataCubit()..loadData(),
       ),
     ],
     child: _MainApp(),
