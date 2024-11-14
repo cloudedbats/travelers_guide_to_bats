@@ -5,24 +5,24 @@ part 'data_state.dart';
 
 enum DataStatus { initial, loading, success, failure }
 
-class DataResultData {
+class DataResult {
   DataStatus status = DataStatus.initial;
 
-  DataResultData({
+  DataResult({
     this.status = DataStatus.initial,
   });
 }
 
 class DataCubit extends Cubit<DataState> {
-  DataCubit() : super(DataState(DataResultData()));
+  DataCubit() : super(DataState(DataResult()));
 
   static String lastException = '';
 
   Future<void> loadData() async {
     lastException = '';
     // Tell consumers that we are working.
-    late DataResultData result;
-    result = DataResultData();
+    late DataResult result;
+    result = DataResult();
     result.status = DataStatus.loading;
     emit(DataState(result));
     // Load data from assets to model.
@@ -35,7 +35,7 @@ class DataCubit extends Cubit<DataState> {
       return;
     }
     // Tell consumers that we are done.
-    result = DataResultData();
+    result = DataResult();
     result.status = DataStatus.success;
     emit(DataState(result));
   }

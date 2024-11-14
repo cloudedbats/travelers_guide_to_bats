@@ -37,9 +37,9 @@ class _ByCountryViewState extends State<ByCountryView> {
                   children: [
                     BlocConsumer<DataCubit, DataState>(
                       listener: (context, state) {
-                        // String enumAsString = state.dataResultData.status.name;
+                        // String enumAsString = state.dataResult.status.name;
                         // print('Data status 1: $enumAsString');
-                        if (state.dataResultData.status == DataStatus.success) {
+                        if (state.dataResult.status == DataStatus.success) {
                           BlocProvider.of<ByCountryCubit>(context)
                               .filterByCountryByString(filterString ?? '');
                         }
@@ -48,7 +48,7 @@ class _ByCountryViewState extends State<ByCountryView> {
                         return true;
                       },
                       builder: (context, state) {
-                        if (state.dataResultData.status == DataStatus.success) {
+                        if (state.dataResult.status == DataStatus.success) {
                           return DropdownButton(
                             hint: const Text('Select country'),
                             items: model.countries.map((model.Country item) {
@@ -136,7 +136,8 @@ class _ByCountryViewState extends State<ByCountryView> {
                             // subtitle: Text(ByCountry[index].commonName),
                             subtitle: Text(
                                 '${byCountry[index].taxonFamily}    ${byCountry[index].commonName}'),
-                            trailing: Text(byCountry[index].redListCategory),
+                            trailing: Text(
+                                '${byCountry[index].redListCategory}\n${index + 1} (${byCountry.length})'),
                           ),
                         ),
                       );

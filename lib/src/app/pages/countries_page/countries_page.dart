@@ -55,7 +55,7 @@ class _CountryListViewState extends State<CountryListView> {
                     return true;
                   },
                   listener: (context, state) {
-                    if (state.countriesResultData.status ==
+                    if (state.countriesResult.status ==
                         CountriesStatus.initial) {
                       context
                           .read<CountriesCubit>()
@@ -66,16 +66,18 @@ class _CountryListViewState extends State<CountryListView> {
                     return true;
                   },
                   builder: (context, state) {
-                    if (state.countriesResultData.status ==
+                    if (state.countriesResult.status ==
                         CountriesStatus.success) {
                       var countryList =
-                          state.countriesResultData.filteredCountries;
+                          state.countriesResult.filteredCountries;
                       return ListView.builder(
                         itemCount: countryList.length,
                         itemBuilder: (context, index) => Card(
                           child: ListTile(
                             title: Text(countryList[index].countryName),
-                            trailing: Text(countryList[index].countryCode),
+                            // trailing: Text(countryList[index].countryCode),
+                            trailing: Text(
+                                '${countryList[index].countryCode}\n${index + 1} (${countryList.length})'),
                           ),
                         ),
                       );
