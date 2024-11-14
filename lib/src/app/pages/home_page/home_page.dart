@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:package_info_plus/package_info_plus.dart';
-import '../countries_page/countries_page.dart';
 import '../by_country_page/by_country_page.dart';
-import '../main_page/cubit/theme_cubit.dart'
-    as theme_cubit;
+import '../bats_page/bats_page.dart';
+import '../countries_page/countries_page.dart';
+import '../main_page/cubit/theme_cubit.dart' as theme_cubit;
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -27,7 +27,7 @@ class _HomePageState extends State<HomePage> {
         userSelectedPage = const ByCountryView();
         break;
       case 1:
-        userSelectedPage = const Placeholder();
+        userSelectedPage = const BatListView();
         break;
       case 2:
         userSelectedPage = const CountryListView();
@@ -104,7 +104,7 @@ class _HomePageState extends State<HomePage> {
             label: 'By country',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.tune),
+            icon: Icon(Icons.cruelty_free),
             label: 'Bats',
           ),
           BottomNavigationBarItem(
@@ -112,7 +112,7 @@ class _HomePageState extends State<HomePage> {
             label: 'Countries',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.info),
+            icon: Icon(Icons.language),
             label: 'About',
           ),
         ],
@@ -187,14 +187,14 @@ class _HomePageState extends State<HomePage> {
                 NavigationRailDestination(
                   icon: Tooltip(
                     message: 'Bats',
-                    child: Icon(Icons.tune),
+                    child: Icon(Icons.cruelty_free),
                   ),
                   label: Text('Bats'),
                 ),
                 NavigationRailDestination(
                   icon: Tooltip(
                     message: 'Countries',
-                    child: Icon(Icons.public),
+                    child: Icon(Icons.language),
                   ),
                   label: Text('Countries'),
                 ),
@@ -260,8 +260,10 @@ class _HomePageState extends State<HomePage> {
                 TextSpan(text: '\n\n'),
                 TextSpan(text: 'For developers:\n'),
                 TextSpan(text: 'I wrote this app because I wanted to learn '),
-                TextSpan(text: 'the basics of Flutter and Dart. '),
-                TextSpan(text: 'You can read more about it on GitHub:\n'),
+                TextSpan(text: 'the basics of Flutter and Dart.\n'),
+                TextSpan(text: 'The cute rabbit is a placeholder for a long-eared bat, '),
+                TextSpan(text: 'the best one available in the default icon lib.\n'),
+                TextSpan(text: 'You can read more about the system on GitHub:\n'),
                 TextSpan(
                     text:
                         'https://github.com/cloudedbats/travelers_guide_to_bats'),

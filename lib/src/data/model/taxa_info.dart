@@ -95,6 +95,16 @@ Future<List<TaxonInfo>> filterByCountryCode(String? countryCode) async {
   return filteredTaxaInfo;
 }
 
+Future<List<TaxonInfo>> filterBatsByString(String filterString) async {
+  List<TaxonInfo> filteredList = taxaInfo
+      .where((a) =>
+          a.scientificName.toLowerCase().contains(filterString.toLowerCase()) ||
+          a.commonName.toLowerCase().contains(filterString.toLowerCase()))
+      .toList();
+  return filteredList;
+}
+
+
 // scientific_name 0
 // taxonid 1
 // kingdom 2

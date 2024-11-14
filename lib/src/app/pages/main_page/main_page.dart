@@ -3,8 +3,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'cubit/theme_cubit.dart';
 import 'cubit/data_cubit.dart';
 import '../home_page/home_page.dart';
-import '../countries_page/cubit/countries_cubit.dart';
 import '../by_country_page/cubit/by_country_cubit.dart';
+import '../bats_page/cubit/bats_cubit.dart';
+import '../countries_page/cubit/countries_cubit.dart';
 
 void startApp() {
   runApp(MultiBlocProvider(
@@ -20,6 +21,10 @@ void startApp() {
       BlocProvider<CountriesCubit>(
         lazy: false,
         create: (context) => CountriesCubit()..loadInitialCountry(),
+      ),
+      BlocProvider<BatsCubit>(
+        lazy: false,
+        create: (context) => BatsCubit()..loadInitialBats(),
       ),
       BlocProvider<DataCubit>(
         lazy: true,
