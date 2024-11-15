@@ -108,11 +108,11 @@ class _HomePageState extends State<HomePage> {
             label: 'Bats',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.public),
+            icon: Icon(Icons.language),
             label: 'Countries',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.language),
+            icon: Icon(Icons.info),
             label: 'About',
           ),
         ],

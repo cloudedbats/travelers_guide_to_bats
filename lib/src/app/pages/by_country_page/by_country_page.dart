@@ -50,11 +50,17 @@ class _ByCountryViewState extends State<ByCountryView> {
                       builder: (context, state) {
                         if (state.dataResult.status == DataStatus.success) {
                           return DropdownButton(
+                            // isDense: false,
+                            // isExpanded: true,
                             hint: const Text('Select country'),
                             items: model.countries.map((model.Country item) {
                               return DropdownMenuItem(
                                   value: item.countryCode,
-                                  child: Text(item.countryName));
+                                  child: Text(
+                                    // softWrap: true,
+                                    // overflow: TextOverflow.ellipsis,
+                                    item.countryName,
+                                  ));
                             }).toList(),
                             value: filterString,
                             // value: BlocProvider.of<ByCountryCubit>(context).lastUsedFilter(),
