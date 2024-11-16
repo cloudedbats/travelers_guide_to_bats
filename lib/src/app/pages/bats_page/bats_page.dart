@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'cubit/bats_cubit.dart';
@@ -80,6 +81,12 @@ class _BatListViewState extends State<BatListView> {
                           ),
                         ),
                       );
+                    } else if (state.batsResult.status == BatsStatus.initial) {
+                      return const Center(child: CupertinoActivityIndicator());
+                    } else if (state.batsResult.status == BatsStatus.loading) {
+                      return const Center(child: CupertinoActivityIndicator());
+                    } else if (state.batsResult.status == BatsStatus.failure) {
+                      return Center(child: Text(state.batsResult.message));
                     } else {
                       return const Placeholder();
                     }

@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../data/model/model.dart' as model;
@@ -147,6 +148,12 @@ class _ByCountryViewState extends State<ByCountryView> {
                           ),
                         ),
                       );
+                    } else if (state.byCountryResult.status == ByCountryStatus.initial) {
+                      return const Center(child: CupertinoActivityIndicator());
+                    } else if (state.byCountryResult.status == ByCountryStatus.loading) {
+                      return const Center(child: CupertinoActivityIndicator());
+                    } else if (state.byCountryResult.status == ByCountryStatus.failure) {
+                      return Center(child: Text(state.byCountryResult.message));
                     } else {
                       return const Placeholder();
                     }

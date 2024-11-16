@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'cubit/countries_cubit.dart';
@@ -81,6 +82,12 @@ class _CountryListViewState extends State<CountryListView> {
                           ),
                         ),
                       );
+                    } else if (state.countriesResult.status == CountriesStatus.initial) {
+                      return const Center(child: CupertinoActivityIndicator());
+                    } else if (state.countriesResult.status == CountriesStatus.loading) {
+                      return const Center(child: CupertinoActivityIndicator());
+                    } else if (state.countriesResult.status == CountriesStatus.failure) {
+                      return Center(child: Text(state.countriesResult.message));
                     } else {
                       return const Placeholder();
                     }
