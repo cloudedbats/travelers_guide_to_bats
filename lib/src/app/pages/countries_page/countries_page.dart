@@ -1,7 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_html/flutter_html.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'cubit/countries_cubit.dart';
+import '../../../data/model/countries.dart';
+import '../../../core/get_data.dart';
 
 class CountryListView extends StatefulWidget {
   const CountryListView({
@@ -69,8 +72,7 @@ class _CountryListViewState extends State<CountryListView> {
                   builder: (context, state) {
                     if (state.countriesResult.status ==
                         CountriesStatus.success) {
-                      var countryList =
-                          state.countriesResult.filteredCountries;
+                      var countryList = state.countriesResult.filteredCountries;
                       return ListView.builder(
                         itemCount: countryList.length,
                         itemBuilder: (context, index) => Card(
@@ -78,15 +80,23 @@ class _CountryListViewState extends State<CountryListView> {
                             title: Text(countryList[index].countryName),
                             // trailing: Text(countryList[index].countryCode),
                             trailing: Text(
-                                '${countryList[index].countryCode}\n${index + 1} (${countryList.length})'),
+                              '${countryList[index].countryCode}\n${index + 1} (${countryList.length})',
+                            ),
+                            onTap: () {
+                              showSpeciesListDialog(
+                                  context, countryList, index);
+                            },
                           ),
                         ),
                       );
-                    } else if (state.countriesResult.status == CountriesStatus.initial) {
+                    } else if (state.countriesResult.status ==
+                        CountriesStatus.initial) {
                       return const Center(child: CupertinoActivityIndicator());
-                    } else if (state.countriesResult.status == CountriesStatus.loading) {
+                    } else if (state.countriesResult.status ==
+                        CountriesStatus.loading) {
                       return const Center(child: CupertinoActivityIndicator());
-                    } else if (state.countriesResult.status == CountriesStatus.failure) {
+                    } else if (state.countriesResult.status ==
+                        CountriesStatus.failure) {
                       return Center(child: Text(state.countriesResult.message));
                     } else {
                       return const Placeholder();
@@ -99,5 +109,69 @@ class _CountryListViewState extends State<CountryListView> {
         },
       ),
     );
+  }
+
+  Future<dynamic> showSpeciesListDialog(
+      BuildContext context, List<Country> countryList, int index) {
+    return showDialog(
+      context: context,
+      builder: (BuildContext context) => Dialog(
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: SingleChildScrollView(
+            // Close, many alternatives.
+            // child: TextButton(
+            //   onPressed: () { Navigator.pop(context); },
+            // child: InkWell(
+            child: GestureDetector(
+              onTap: () {
+                Navigator.pop(context);
+              },
+              child: Padding(
+                padding: const EdgeInsets.all(10.0),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    Align(
+                      alignment: Alignment.topRight,
+                      // Close, many alternatives.
+                      child: IconButton(
+                          onPressed: () {
+                            Navigator.pop(context);
+                          },
+                          icon: Icon(Icons.close)),
+                    ),
+                    // Text(
+                    //   '${countryList[index].countryName}\n\n',
+                    //   style: const TextStyle(
+                    //       // fontStyle: FontStyle.italic,
+                    //       fontWeight: FontWeight.bold),
+                    // ),
+                    Html(
+                      // style: ,
+                      data: speciesListByCountry(countryList[index].countryName,
+                          countryList[index].countryCode),
+                    ),
+                    // const SizedBox(height: 15),
+                    // Close, many alternatives.
+                    TextButton(
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
+                      child: const Text('Close'),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  String speciesListByCountry(String countryName, String countryCode) {
+    return getSpeciesByCountryAsHtml(countryName, countryCode);
   }
 }

@@ -1,7 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_html/flutter_html.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'cubit/bats_cubit.dart';
+import '../../../data/model/taxa_info.dart';
+import '../../../core/get_data.dart';
 
 class BatListView extends StatefulWidget {
   const BatListView({
@@ -78,6 +81,9 @@ class _BatListViewState extends State<BatListView> {
                                 '${batList[index].taxonFamily}    ${batList[index].commonName}'),
                             trailing: Text(
                                 '${batList[index].redListCategory}\n${index + 1} (${batList.length})'),
+                            onTap: () {
+                              showSpeciesListDialog(context, batList, index);
+                            },
                           ),
                         ),
                       );
@@ -98,5 +104,70 @@ class _BatListViewState extends State<BatListView> {
         },
       ),
     );
+  }
+
+  Future<dynamic> showSpeciesListDialog(
+      BuildContext context, List<TaxonInfo> batList, int index) {
+    return showDialog(
+      context: context,
+      builder: (BuildContext context) => Dialog(
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: SingleChildScrollView(
+            // Close, many alternatives.
+            // child: TextButton(
+            //   onPressed: () { Navigator.pop(context); },
+            // child: InkWell(
+            child: GestureDetector(
+              onTap: () {
+                Navigator.pop(context);
+              },
+              child: Padding(
+                padding: const EdgeInsets.all(10.0),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    Align(
+                      alignment: Alignment.topRight,
+                      // Close, many alternatives.
+                      child: IconButton(
+                          onPressed: () {
+                            Navigator.pop(context);
+                          },
+                          icon: Icon(Icons.close)),
+                    ),
+                    // Text(
+                    //   '${countryList[index].countryName}\n\n',
+                    //   style: const TextStyle(
+                    //       // fontStyle: FontStyle.italic,
+                    //       fontWeight: FontWeight.bold),
+                    // ),
+                    Html(
+                      // style: ,
+                      data: countryListBySpeciesy(batList[index].scientificName,
+                          batList[index].commonName, batList[index].taxonId),
+                    ),
+                    // const SizedBox(height: 15),
+                    // Close, many alternatives.
+                    TextButton(
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
+                      child: const Text('Close'),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  String countryListBySpeciesy(
+      String scientificName, String commonName, String taxonId) {
+    return getCountriesBySpeciesAsHtml(scientificName, commonName, taxonId);
   }
 }

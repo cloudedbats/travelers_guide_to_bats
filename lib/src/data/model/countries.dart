@@ -2,6 +2,7 @@
 List<Country> countries = [];
 Map<String, String> countryNameByCountryCode = {};
 Map<String, List> taxaByCountryCode = {};
+Map<String, List> countriesByTaxonId = {};
 
 // Class definitions and methods.
 class Country {
@@ -22,11 +23,16 @@ void addCountry(String countryCode, String countryName) {
 }
 
 void addTaxonToCountry(String countryCode, String taxonId) {
-  // Add object to lookup map.
+  // Create lookup map.
   if (!taxaByCountryCode.containsKey(countryCode)) {
     taxaByCountryCode[countryCode] = [];
   }
   taxaByCountryCode[countryCode]!.add(taxonId);
+  // Create lookup map.
+  if (!countriesByTaxonId.containsKey(taxonId)) {
+    countriesByTaxonId[taxonId] = [];
+  }
+  countriesByTaxonId[taxonId]!.add(countryCode);
 }
 
 void clearAll() {

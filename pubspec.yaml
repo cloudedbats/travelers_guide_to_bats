@@ -1,7 +1,7 @@
 name: travelers_guide_to_bats
-description: "Traveler's  Guide to Bats. Developed in Flutter and Dart."
+description: "Traveler's Guide to Bats. Developed in Flutter and Dart."
 publish_to: 'none'
-version: 2024.1.0-development
+version: 2024.1.1-development
 
 environment:
   sdk: ^3.5.0
@@ -15,6 +15,7 @@ dependencies:
   shared_preferences:
   package_info_plus:
   excel:
+  flutter_html:
   flutter:
     sdk: flutter
 
