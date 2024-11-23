@@ -117,7 +117,7 @@ class _CountryListViewState extends State<CountryListView> {
       context: context,
       builder: (BuildContext context) => Dialog(
         child: Padding(
-          padding: const EdgeInsets.all(8.0),
+          padding: const EdgeInsets.all(2.0),
           child: SingleChildScrollView(
             // Close, many alternatives.
             // child: TextButton(
@@ -128,40 +128,44 @@ class _CountryListViewState extends State<CountryListView> {
                 Navigator.pop(context);
               },
               child: Padding(
-                padding: const EdgeInsets.all(10.0),
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    Align(
-                      alignment: Alignment.topRight,
+                padding: const EdgeInsets.fromLTRB(20.0, 2.0, 20.0, 2.0),
+                child: SelectionArea(
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      Align(
+                        alignment: Alignment.topRight,
+                        // Close, many alternatives.
+                        child: IconButton(
+                            onPressed: () {
+                              Navigator.pop(context);
+                            },
+                            icon: Icon(Icons.close)),
+                      ),
+                      // Text(
+                      //   '${countryList[index].countryName}\n\n',
+                      //   style: const TextStyle(
+                      //       // fontStyle: FontStyle.italic,
+                      //       fontWeight: FontWeight.bold),
+                      // ),
+                      Html(
+                        // style: ,
+                        data: speciesListByCountry(
+                            countryList[index].countryName,
+                            countryList[index].countryCode),
+                      ),
+                      // const SizedBox(height: 15),
                       // Close, many alternatives.
-                      child: IconButton(
-                          onPressed: () {
-                            Navigator.pop(context);
-                          },
-                          icon: Icon(Icons.close)),
-                    ),
-                    // Text(
-                    //   '${countryList[index].countryName}\n\n',
-                    //   style: const TextStyle(
-                    //       // fontStyle: FontStyle.italic,
-                    //       fontWeight: FontWeight.bold),
-                    // ),
-                    Html(
-                      // style: ,
-                      data: speciesListByCountry(countryList[index].countryName,
-                          countryList[index].countryCode),
-                    ),
-                    // const SizedBox(height: 15),
-                    // Close, many alternatives.
-                    TextButton(
-                      onPressed: () {
-                        Navigator.pop(context);
-                      },
-                      child: const Text('Close'),
-                    ),
-                  ],
+                      TextButton(
+                        onPressed: () {
+                          Navigator.pop(context);
+                        },
+                        child: SelectionContainer.disabled(
+                            child: const Text('Close')),
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ),

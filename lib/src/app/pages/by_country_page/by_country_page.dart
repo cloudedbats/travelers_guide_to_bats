@@ -180,7 +180,7 @@ class _ByCountryViewState extends State<ByCountryView> {
       context: context,
       builder: (BuildContext context) => Dialog(
         child: Padding(
-          padding: const EdgeInsets.all(8.0),
+          padding: const EdgeInsets.all(2.0),
           child: SingleChildScrollView(
             // Close, many alternatives.
             // child: TextButton(
@@ -191,40 +191,48 @@ class _ByCountryViewState extends State<ByCountryView> {
                 Navigator.pop(context);
               },
               child: Padding(
-                padding: const EdgeInsets.all(10.0),
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    Align(
-                      alignment: Alignment.topRight,
+                padding: const EdgeInsets.fromLTRB(20.0, 2.0, 20.0, 2.0),
+                child: SelectionArea(
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      Align(
+                        alignment: Alignment.topRight,
+                        // Close, many alternatives.
+                        child: IconButton(
+                            onPressed: () {
+                              Navigator.pop(context);
+                            },
+                            icon: Icon(Icons.close)),
+                      ),
+                      // Text(
+                      //   '${countryList[index].countryName}\n\n',
+                      //   style: const TextStyle(
+                      //       // fontStyle: FontStyle.italic,
+                      //       fontWeight: FontWeight.bold),
+                      // ),
+                      Html(
+                        // style: ,
+                          data: countryListBySpecies(
+                            batList[index].scientificName,
+                            batList[index].commonName,
+                            batList[index].taxonFamily,
+                            batList[index].redListCategory,
+                            batList[index].taxonId,
+                          ),
+                      ),
+                      // const SizedBox(height: 15),
                       // Close, many alternatives.
-                      child: IconButton(
-                          onPressed: () {
-                            Navigator.pop(context);
-                          },
-                          icon: Icon(Icons.close)),
-                    ),
-                    // Text(
-                    //   '${countryList[index].countryName}\n\n',
-                    //   style: const TextStyle(
-                    //       // fontStyle: FontStyle.italic,
-                    //       fontWeight: FontWeight.bold),
-                    // ),
-                    Html(
-                      // style: ,
-                      data: countryListBySpeciesy(batList[index].scientificName,
-                          batList[index].commonName, batList[index].taxonId),
-                    ),
-                    // const SizedBox(height: 15),
-                    // Close, many alternatives.
-                    TextButton(
-                      onPressed: () {
-                        Navigator.pop(context);
-                      },
-                      child: const Text('Close'),
-                    ),
-                  ],
+                      TextButton(
+                        onPressed: () {
+                          Navigator.pop(context);
+                        },
+                        child: SelectionContainer.disabled(
+                              child: const Text('Close')),
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ),
@@ -234,8 +242,14 @@ class _ByCountryViewState extends State<ByCountryView> {
     );
   }
 
-  String countryListBySpeciesy(
-      String scientificName, String commonName, String taxonId) {
-    return getCountriesBySpeciesAsHtml(scientificName, commonName, taxonId);
+  String countryListBySpecies(
+    String scientificName,
+    String commonName,
+    String taxonFamily,
+    String redListCategory,
+    String taxonId,
+  ) {
+    return getCountriesBySpeciesAsHtml(
+        scientificName, commonName, taxonFamily, redListCategory, taxonId);
   }
 }

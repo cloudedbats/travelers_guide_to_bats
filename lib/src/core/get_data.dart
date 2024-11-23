@@ -21,14 +21,16 @@ String getSpeciesByCountryAsHtml(String countryName, String countryCode) {
   resultString += '<h2>';
   resultString += countryName;
   resultString += '</h2>';
+  resultString += '<br><br>';
   resultString += 'Number of bat species: ';
   resultString += '<strong>';
   resultString += taxaInfo.length.toString();
   resultString += '</strong>';
-  resultString += '<br><br>';
+  resultString += '<br>';
   String oldFamily = '';
   for (model.TaxonInfo taxon in taxaInfo) {
     if (taxon.taxonFamily != oldFamily) {
+      resultString += '<br>';
       resultString += 'Family: ';
       resultString += '<i><strong>';
       resultString += taxon.taxonFamily;
@@ -36,15 +38,16 @@ String getSpeciesByCountryAsHtml(String countryName, String countryCode) {
       resultString += '<br><br>';
       oldFamily = taxon.taxonFamily;
     }
-    resultString += '    ';
-    resultString += '<i><strong>&emsp;&emsp;';
+    // resultString += '    ';
+    // resultString += '<i><strong>&emsp;&emsp;';
+    resultString += '<i><strong>';
     resultString += taxon.scientificName;
     resultString += '</strong></i>';
     resultString += ' - ';
     resultString += taxon.commonName;
     resultString += ' - ';
     resultString += taxon.redListCategory;
-    resultString += '<br><br>';
+    resultString += '<br>';
   }
   return resultString;
 }
@@ -52,6 +55,8 @@ String getSpeciesByCountryAsHtml(String countryName, String countryCode) {
 String getCountriesBySpeciesAsHtml(
   String scientificName,
   String commonName,
+  String taxonFamily,
+  String redListCategory,
   String taxonId,
 ) {
   List<dynamic>? countries = model.countriesByTaxonId[taxonId];
@@ -71,9 +76,14 @@ String getCountriesBySpeciesAsHtml(
   resultString += '<i>';
   resultString += scientificName;
   resultString += '</i>';
-  resultString += ' - ';
-  resultString += commonName;
   resultString += '</h2>';
+  resultString += '<br>';
+  resultString += taxonFamily;
+  resultString += ' - ';
+  resultString += '<strong>';
+  resultString += commonName;
+  resultString += '</strong>';
+  resultString += '<br><br>';
   resultString += 'Distribution: ';
   resultString += '<br><br>';
   for (String countryName in countryNameList) {
