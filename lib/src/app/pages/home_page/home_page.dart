@@ -258,12 +258,22 @@ class _HomePageState extends State<HomePage> {
                     text:
                         '"IUCN 2024. IUCN Red List of Threatened Species. Version 2024-2 <www.iucnredlist.org>".'),
                 TextSpan(text: '\n\n'),
+                TextSpan(text: 'Please note that the Red List\'s categories '),
+                TextSpan(text: 'and species distribution are based '),
+                TextSpan(text: 'on the global assessment.\n'),
+                TextSpan(text: 'This may differ from the regional '),
+                TextSpan(text: 'and national assessments that also exist.'),
+                TextSpan(text: '\n\n'),
                 TextSpan(text: 'For developers:\n'),
                 TextSpan(text: 'I wrote this app because I wanted to learn '),
                 TextSpan(text: 'the basics of Flutter and Dart.\n'),
-                TextSpan(text: 'The cute rabbit is a placeholder for a long-eared bat, '),
-                TextSpan(text: 'the best one available in the default icon lib.\n'),
-                TextSpan(text: 'You can read more about the system on GitHub:\n'),
+                TextSpan(
+                    text:
+                        'The cute rabbit is a placeholder for a long-eared bat, '),
+                TextSpan(
+                    text: 'the best one available in the default icon lib.\n'),
+                TextSpan(
+                    text: 'You can read more about the system on GitHub:\n'),
                 TextSpan(
                     text:
                         'https://github.com/cloudedbats/travelers_guide_to_bats'),

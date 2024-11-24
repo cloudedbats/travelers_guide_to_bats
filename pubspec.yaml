@@ -1,16 +1,17 @@
 name: travelers_guide_to_bats
 description: "Traveler's Guide to Bats. Developed in Flutter and Dart."
 publish_to: 'none'
-version: 2024.1.1-development
+version: 2024.1.2-development
 
 environment:
   sdk: ^3.5.0
 
 dependencies:
+  # firebase_core:
   flutter_bloc:
   equatable:
-  hive:
-  hive_flutter:
+  # hive:
+  # hive_flutter:
   path_provider:
   shared_preferences:
   package_info_plus:

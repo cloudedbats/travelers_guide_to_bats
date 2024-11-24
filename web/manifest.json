@@ -1,12 +1,12 @@
 {
     "name": "Traveler's Guide to Bats",
-    "short_name": "IUCN-Bats",
+    "short_name": "Guide to Bats",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
     "theme_color": "#0175C2",
     "description": "This app shows bat species in various countries.",
-    "orientation": "natural",
+    "orientation": "all",
     "prefer_related_applications": false,
     "icons": [
         {
