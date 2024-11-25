@@ -7,7 +7,6 @@ environment:
   sdk: ^3.5.0
 
 dependencies:
-  # firebase_core:
   flutter_bloc:
   equatable:
   # hive:
@@ -19,6 +18,7 @@ dependencies:
   flutter_html:
   flutter:
     sdk: flutter
+  # firebase_core:
 
 dev_dependencies:
   flutter_test:
